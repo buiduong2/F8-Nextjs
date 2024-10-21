@@ -1,0 +1,33 @@
+{
+	"HomePage": {
+		"meta": {
+			"title": "F8 Portfolio Excersie",
+			"description": "Infomation about me",
+			"author": "Duong",
+			"og": {
+				"title": "F8 Portfolio Excersie",
+				"description": "Infomation about me",
+				"image": "/img/f8.jpg",
+				"locale": "en_US"
+			}
+		},
+		"title": {
+			"content": "My Portfolio",
+			"tooltip": "Regardless of the challenges, I continue moving forward in silence, constantly seeking ways to better myself each day."
+		},
+
+		"sectionContact": {
+			"title": "Contact"
+		},
+
+		"sectionProjectList": {
+			"title": "Self Projects"
+		},
+
+		"sectionSkillAndTimeline": {
+			"avatarTitle": "A Developer",
+			"skillTitle": "My skills:",
+			"timelineTitle": "Timeline:"
+		}
+	}
+}

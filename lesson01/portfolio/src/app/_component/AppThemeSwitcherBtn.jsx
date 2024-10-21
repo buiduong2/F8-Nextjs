@@ -1,4 +1,4 @@
-"use client";
+'use client'
 import { Button } from '@nextui-org/button'
 import React from 'react'
 import { useTheme } from 'next-themes'
@@ -14,12 +14,14 @@ export default function AppThemeSwitcherBtn() {
 	useEffect(() => {
 		setMounted(true)
 	}, [])
-
-	if (!mounted) {
-		return null
-	}
-
 	const icon = theme === 'dark' ? faSun : faMoon
+	if (!mounted) {
+		return (
+			<Button className="p-0" variant="bordered" isIconOnly>
+				<FontAwesomeIcon icon={icon} className="size-6" />
+			</Button>
+		)
+	}
 
 	function handleOnClick() {
 		setTheme(theme === 'dark' ? 'light' : 'dark')

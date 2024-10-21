@@ -1,0 +1,33 @@
+{
+	"HomePage": {
+		"meta": {
+			"title": "Bài tập F8 Portfolio",
+			"description": "Thông tin về tôi",
+			"author": "Duong",
+			"og": {
+				"title": "Bài tập F8 Portfolio",
+				"description": "Thông tin về tôi",
+				"image": "/img/f8.jpg",
+				"locale": "vi_VN"
+			}
+		},
+		"title": {
+			"content": "Portfolio Của Tôi",
+			"tooltip": "Bất kể khó khăn ra sao, tôi vẫn lặng lẽ tiến bước, luôn tìm cách vươn lên và trau dồi bản thân mỗi ngày."
+		},
+
+		"sectionContact": {
+			"title": "Thông tin liên hệ"
+		},
+
+		"sectionProjectList": {
+			"title": "Các dự án cá nhân"
+		},
+
+		"sectionSkillAndTimeline": {
+			"avatarTitle": "Lập Trình Viên",
+			"skillTitle": "Các kĩ năng của tôi:",
+			"timelineTitle": "Lịch sử:"
+		}
+	}
+}

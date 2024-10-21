@@ -13,9 +13,8 @@ import {
 	faGithub,
 	faGoogle
 } from '@fortawesome/free-brands-svg-icons'
-
-import { Button } from '@nextui-org/button'
 import AppThemeSwitcherBtn from './AppThemeSwitcherBtn'
+import AppLocaleSwitcherBtn from './AppLocaleSwitcherBtn'
 
 export default function AppNavBar({}) {
 	return (
@@ -40,17 +39,17 @@ export default function AppNavBar({}) {
 
 			<NavbarContent className=" sm:flex gap-1" justify="end">
 				<NavbarItem>
-					<Link href="mailto:buiducduong1@gmail.com">
+					<Link target="_blank" href="mailto:buiducduong1@gmail.com">
 						<FontAwesomeIcon icon={faGoogle} className="size-6" />
 					</Link>
 				</NavbarItem>
 				<NavbarItem>
-					<Link href="https://www.facebook.com/profile.php?id=100010036307790">
+					<Link target="_blank" href="https://www.facebook.com/">
 						<FontAwesomeIcon icon={faFacebook} className="size-6" />
 					</Link>
 				</NavbarItem>
 				<NavbarItem>
-					<Link href="https://github.com/buiduong2">
+					<Link target="_blank" href="https://github.com/buiduong2">
 						<FontAwesomeIcon icon={faGithub} className="size-6" />
 					</Link>
 				</NavbarItem>
@@ -58,9 +57,7 @@ export default function AppNavBar({}) {
 					<AppThemeSwitcherBtn />
 				</NavbarItem>
 				<NavbarItem>
-					<Button variant="bordered" isIconOnly>
-						vi
-					</Button>
+					<AppLocaleSwitcherBtn />
 				</NavbarItem>
 			</NavbarContent>
 		</Navbar>

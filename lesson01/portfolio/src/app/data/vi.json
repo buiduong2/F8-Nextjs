@@ -1,0 +1,84 @@
+{
+	"contacts": [
+		{
+			"label": "Phone: ",
+			"href": "tel:0987654321",
+			"value": "0987654321"
+		},
+		{
+			"label": "Zalo: ",
+			"href": "https://zalo.me",
+			"value": "https://zalo.me"
+		},
+		{
+			"label": "Email: ",
+			"href": "mailto:contact@fullstack.edu.vn",
+			"value": "contact@fullstack.edu.vn"
+		},
+		{
+			"label": "Facebook: ",
+			"href": "https://www.facebook.com/groups/f8official",
+			"value": "https://www.facebook.com/groups/f8official"
+		},
+		{
+			"label": "Youtube: ",
+			"href": "https://www.youtube.com/c/F8VNOfficial",
+			"value": "https://www.youtube.com/c/F8VNOfficial"
+		}
+	],
+	"skills": [
+		{
+			"label": "Kỹ năng làm việc",
+			"value": "REST API, React.js, Next.js, Redux, Context, CSS3, HTML5, UI/UX, Figma, Photoshop..."
+		},
+		{
+			"label": "Các kỹ năng khác",
+			"value": "Kỹ năng nghiên cứu và tìm kiếm tương đối tốt. Tư duy làm việc, kỹ năng làm việc nhóm tốt so với độ tuổi."
+		}
+	],
+	"timelines": [
+		{
+			"label": "2016: ",
+			"value": "Trường Trung học Cơ sở nào đó"
+		},
+		{
+			"label": "2017-2019: ",
+			"value": "Các trường Trung học Cơ sở khác"
+		},
+		{
+			"label": "2019-2021: ",
+			"value": "Trường Trung học Phổ thông khác"
+		},
+		{
+			"label": "2022-2023: ",
+			"value": "Học đại học và làm trợ giảng tại F8"
+		}
+	],
+
+	"projects": [
+		{
+			"id": 1,
+			"title": "Project Code snippet",
+			"timeConsume": "Một dự án nhỏ hoàn thành trong vòng một ngày",
+			"desc": "Một trang web đơn giản cho phép tạo và chia sẻ các đoạn code. Sử dụng HTML, CSS, JS và custom elements.",
+			"demoUrl": "https://codefast.vercel.app/",
+			"codeUrl": "https://github.com/duongnguyenf8/demo_custom-element"
+		},
+		{
+			"id": 2,
+			"title": "Project Code snippet",
+			"timeConsume": "Một dự án nhỏ hoàn thành trong vòng một ngày",
+			"desc": "Một trang web đơn giản cho phép tạo và chia sẻ các đoạn code. Sử dụng HTML, CSS, JS và custom elements.",
+			"demoUrl": "https://codefast.vercel.app/",
+			"codeUrl": "https://github.com/duongnguyenf8/demo_custom-element"
+		},
+		{
+			"id": 3,
+			"title": "Project Code snippet",
+			"timeConsume": "Một dự án nhỏ hoàn thành trong vòng một ngày",
+			"desc": "Một trang web đơn giản cho phép tạo và chia sẻ các đoạn code. Sử dụng HTML, CSS, JS và custom elements.",
+			"demoUrl": "https://codefast.vercel.app/",
+			"codeUrl": "https://github.com/duongnguyenf8/demo_custom-element"
+		}
+	]
+}

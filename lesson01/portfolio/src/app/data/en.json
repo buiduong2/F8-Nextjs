@@ -1,0 +1,84 @@
+{
+	"contacts": [
+		{
+			"label": "Phone: ",
+			"href": "tel:0987654321",
+			"value": "0987654321"
+		},
+		{
+			"label": "Zalo: ",
+			"href": "https://zalo.me",
+			"value": "https://zalo.me"
+		},
+		{
+			"label": "Email: ",
+			"href": "mailto:contact@fullstack.edu.vn",
+			"value": "contact@fullstack.edu.vn"
+		},
+		{
+			"label": "Facebook: ",
+			"href": "https://www.facebook.com/groups/f8official",
+			"value": "https://www.facebook.com/groups/f8official"
+		},
+		{
+			"label": "Youtube: ",
+			"href": "https://www.youtube.com/c/F8VNOfficial",
+			"value": "https://www.youtube.com/c/F8VNOfficial"
+		}
+	],
+	"skills": [
+		{
+			"label": "Web developer",
+			"value": "REST API, React.js, Next.js, Redux, Context, CSS3, HTML5, UI/UX, Figma, Photoshop..."
+		},
+		{
+			"label": "Other skills",
+			"value": "Relatively good research and search skills. Working thinking, good teamwork skills compared to age."
+		}
+	],
+	"timelines": [
+		{
+			"label": "2016: ",
+			"value": "One of junior high school"
+		},
+		{
+			"label": "2017-2019: ",
+			"value": "One of junior high school"
+		},
+		{
+			"label": "2019-2021: ",
+			"value": "Other high school"
+		},
+		{
+			"label": "2022-2023: ",
+			"value": "College studies"
+		}
+	],
+
+	"projects": [
+		{
+			"id": 1,
+			"title": "Project Code snippet",
+			"timeConsume": "A small project completed within a day",
+			"desc": "A simple website that allows you to create and share code snippets. Using HTML, CSS, JS and custom elements.",
+			"demoUrl": "https://codefast.vercel.app/",
+			"codeUrl": "https://github.com/duongnguyenf8/demo_custom-element"
+		},
+		{
+			"id": 2,
+			"title": "Project Code snippet",
+			"timeConsume": "A small project completed within a day",
+			"desc": "A simple website that allows you to create and share code snippets. Using HTML, CSS, JS and custom elements.",
+			"demoUrl": "https://codefast.vercel.app/",
+			"codeUrl": "https://github.com/duongnguyenf8/demo_custom-element"
+		},
+		{
+			"id": 3,
+			"title": "Project Code snippet",
+			"timeConsume": "A small project completed within a day",
+			"desc": "A simple website that allows you to create and share code snippets. Using HTML, CSS, JS and custom elements.",
+			"demoUrl": "https://codefast.vercel.app/",
+			"codeUrl": "https://github.com/duongnguyenf8/demo_custom-element"
+		}
+	]
+}
