@@ -50,7 +50,7 @@ export default async function Home() {
 					</CardHeader>
 
 					<CardBody>
-						<div className="grid grid-cols-4 gap-3 prose-base  max-w-none  prose-h4:text-2xl prose-ul:list-none prose-a:no-underline prose-a:font-bold prose-success">
+						<div className="lg:grid lg:grid-cols-4 gap-3 prose-base max-w-none prose-h4:text-2xl prose-ul:list-none prose-a:no-underline prose-a:font-bold prose-success">
 							<div>
 								<SectionSkillAndTimeline
 									timelines={data.timelines}
@@ -58,10 +58,10 @@ export default async function Home() {
 								/>
 							</div>
 							<div className="col-span-3 flex flex-col gap-3">
-								<div>
+								<div className='lg:order-1 order-2'>
 									<SectionContact contacts={data.contacts} />
 								</div>
-								<div>
+								<div className='order-1'>
 									<SectionProjectList
 										projects={data.projects}
 									/>
