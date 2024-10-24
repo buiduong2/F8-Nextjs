@@ -1,9 +1,9 @@
 import Link from 'next/link'
 import React from 'react'
 import NavBarLink from '@/app/_components/NavBarLink'
+import NavBarAuthItem from './NavBarAuthItem'
 
 export default function NavBar() {
-	const isAuthenticated = false
 
 	return (
 		<header className="w-full bg-slate-500 shadow-lg text-slate-100">
@@ -24,26 +24,7 @@ export default function NavBar() {
 						</nav>
 					</div>
 					<div>
-						<ul className="flex">
-							{isAuthenticated ? (
-								<>
-									<li>
-										<NavBarLink href="/profile">
-											Bùi Đức Dương
-										</NavBarLink>
-									</li>
-									<li>
-										<NavBarLink href="/">
-											Đăng Xuất
-										</NavBarLink>
-									</li>
-								</>
-							) : (
-								<li>
-									<NavBarLink href="/login">Đăng nhập</NavBarLink>
-								</li>
-							)}
-						</ul>
+						<NavBarAuthItem />
 					</div>
 				</div>
 			</div>

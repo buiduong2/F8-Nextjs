@@ -1,40 +1,75 @@
-const data = {
-	users: [{ id: 1, username: 'Duong', email: 'BuiDucduong1@gmail.com' }],
+export const data = {
+	users: [],
+	accounts: []
 }
 
-export function createSession(username) {
-	const sessionToken = createRandomString()
-	const user = data.users.find(user => user.username === username)
-	if (user) {
-		user.sessionToken = sessionToken
-		return session
-	}
+async function createUser(user) {
+	data.users.push(user)
+	user.id = String(Math.random())
+	user.role = 'user'
+	return user
 }
 
-
-export function deleteSession(userId) {
-	const user = data.users.find(user => user.id === userId)
-	user.sessionToken = null
+async function getUser(id) {
+	return data.users.find(user => user.id === id) || null
 }
 
+export async function getUserByAccount({ providerAccountId, provider }) {
+	const userId = data.accounts.find(
+		account =>
+			account.providerAccountId === providerAccountId &&
+			account.provider === provider
+	)?.userId
+	return Object.values(data.users).find(user => user.id === userId) || null
+}
 
-export function verifySession(userId, sessionToken) {
-	return data.users.some(
-		user => user.id === userId && user.sessionToken === sessionToken
+async function updateUser({ id, ...data }) {
+	const user = data.users.find(user => user.id === id)
+	if (!user) return null
+	Object.assign(user, data)
+	return user
+}
+
+async function linkAccount(account) {
+	const index = data.accounts.findIndex(
+		a =>
+			a.provider === account.provider &&
+			a.providerAccountId === account.providerAccountId
 	)
-}
-
-
-function createRandomString() {
-	let str = ''
-	for (let i = 0; i < 21; i++) {
-		str += String.fromCharCode(Math.floor(Math.random() * (122 - 60) + 60))
+	if (index !== -1) {
+		data.accounts.splice(index, 1, account)
+		return account
 	}
-
-	return str
+	data.accounts.push(account)
+	return account
 }
 
-
-function trimUser() {
-    
+async function getUserByEmail(email) {
+	return data.users.find(user => user.email === email) || null
 }
+
+export async function getAccountsByUserId(userId) {
+	return JSON.parse(JSON.stringify(data.accounts))
+		.filter(account => account.userId === userId)
+		.map(account => ({ provider: account.provider, name: account.name }))
+}
+
+export async function promoteUser(userId) {
+	const user = await getUser(userId)
+	user.role = 'vip'
+}
+
+async function profile() {}
+
+async function account() {}
+
+export const adatper = () => ({
+	createUser,
+	getUser,
+	getUserByAccount,
+	updateUser,
+	linkAccount,
+	profile,
+	account,
+	getUserByEmail
+})

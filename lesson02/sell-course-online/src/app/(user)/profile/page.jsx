@@ -1,56 +1,38 @@
 /* eslint-disable @next/next/no-img-element */
 
-import IconGithub from '@/app/_components/IconGithub'
-import IconGoogle from '@/app/_components/IconGoogle'
+import IconCrown from '@/app/_components/IconCrown'
+import { authOptions } from '@/app/api/auth/[...nextauth]/route'
+import { getServerSession } from 'next-auth'
+import SocialList from './SocialList'
 
-export default function page() {
+export default async function page() {
+	const session = await getServerSession(authOptions)
+
 	return (
 		<div className="w-full h-full bg-white p-5 rounded-md">
 			<div className="flex gap-5">
 				<div className="size-20 rounded overflow-hidden">
 					<img
-						src={
-							'https://cdn-icons-png.flaticon.com/512/3607/3607444.png'
-						}
+						src={session.user.image}
 						width={80}
 						height={80}
-						alt="Bui Duc Duong Avatar"
+						alt={'Avatar'}
 					/>
 				</div>
 				<div className="prose">
-					<h2 className="my-0">Bui Duc Duong</h2>
-					<p className="text-gray-500">buiducduong1@gmail.com</p>
+					<h2 className="my-0 ">
+						{session.user.name}
+						{session.user.role === 'vip' && (
+							<IconCrown className="ml-2 size-4 fill-yellow-400 inline-block" />
+						)}
+					</h2>
+					<p className="text-gray-500">{session.user.email}</p>
 				</div>
 			</div>
 
 			<hr className="my-5" />
 
-			<div className="prose max-w-none">
-				<h3 className="text-lg font-semibold">Tài khoản xã hội </h3>
-
-				<table className="w-full ">
-					<tbody>
-						<tr>
-							<td className="flex gap-5">
-								<IconGithub className="size-6" /> Github
-							</td>
-							<td><span className='text-gray-400'>No Info</span></td>
-							<td className="text-blue-500 hover:text-blue-300 cursor-pointer transition-colors">
-								Connect
-							</td>
-						</tr>
-						<tr>
-							<td className="flex gap-5">
-								<IconGoogle className="size-6" /> Google
-							</td>
-							<td>Buiducduong1@gmail.com</td>
-							<td className="text-blue-500 hover:text-blue-300 cursor-pointer transition-colors">
-								Connected
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
+			<SocialList  />
 		</div>
 	)
 }

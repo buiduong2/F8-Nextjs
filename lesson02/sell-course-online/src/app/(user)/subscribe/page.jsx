@@ -1,4 +1,5 @@
 import React from 'react'
+import PromoteButton from './PromoteButton'
 
 export default function PageSubsribe() {
 	return (
@@ -34,9 +35,7 @@ export default function PageSubsribe() {
 							<li>Khóa học mới hàng năm</li>
 						</ul>
 						<div>
-							<button className="w-full p-3 rounded bg-blue-500 text-white hover:bg-blue-700 transition-colors">
-								Bắt đầu ngay
-							</button>
+							<PromoteButton />
 						</div>
 					</div>
 				</div>
