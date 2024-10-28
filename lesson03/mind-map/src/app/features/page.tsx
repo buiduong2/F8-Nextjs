@@ -31,7 +31,7 @@ export default function PageFeature() {
 		<div className="container py-12 mx-auto">
 			<div className="flex flex-col justify-center items-center mb-16">
 				<h2 className="mb-4 text-4xl font-medium">Features</h2>
-				<p className="text-xl text-center mb-8">
+				<p className="text-xl text-center mb-8 max-w-4xl">
 					The main aim of creating FWR blocks is to help designers,
 					developers and agencies create websites and web apps quickly
 					and easily. Each and every block uses minimal custom styling

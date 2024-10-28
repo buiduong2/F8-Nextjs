@@ -1,0 +1,44 @@
+.table {
+	@apply w-full text-gray-600;
+}
+
+.table th {
+	@apply text-start uppercase p-3;
+}
+
+.table td {
+	@apply text-start p-3;
+}
+
+.table tr {
+	@apply border-b;
+}
+.table tr:last-child {
+	@apply border-none;
+}
+
+.table tr {
+	@apply hover:bg-gray-100 transition-colors;
+}
+
+.table .thCheckbox,
+.table .tdCheckbox {
+	@apply text-center w-20;
+}
+
+.table .thCheckbox input,
+.table .tdCheckbox input {
+	@apply size-5 cursor-pointer inline-block;
+}
+
+.table .thAction {
+	@apply w-32;
+}
+
+.table .tdAction {
+	@apply text-center align-middle;
+}
+
+.table .tdAction svg {
+	@apply inline-block ml-5 cursor-pointer;
+}

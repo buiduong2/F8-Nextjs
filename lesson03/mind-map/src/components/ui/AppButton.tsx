@@ -33,7 +33,7 @@ const style = {
 				px: 'px-6',
 				borderRadius: 'rounded',
 				lineHeight: ''
-			},
+			}
 		},
 		variants: {
 			filled: {
@@ -51,6 +51,13 @@ const style = {
 					hover: 'hover:bg-purple-900',
 					focus: 'focus:bg-purple-900',
 					active: 'active:bg-purple-900'
+				},
+				red: {
+					backgroud: 'bg-red-500',
+					color: 'text-white',
+					hover: 'hover:bg-red-900',
+					focus: 'focus:bg-red-900',
+					active: 'active:bg-red-900'
 				}
 			},
 			outlined: {
@@ -62,7 +69,14 @@ const style = {
 					active: 'hover:bg-indigo-600 hover:text-white'
 				},
 				gray: {},
-				purple: {}
+				purple: {},
+				red: {
+					border: '!border-red-600',
+					color: 'text-red-600',
+					hover: 'hover:bg-red-600 hover:text-white',
+					focus: 'hover:bg-red-600 hover:text-white',
+					active: 'hover:bg-red-600 hover:text-white'
+				}
 			},
 			text: {
 				blue: {
@@ -75,7 +89,12 @@ const style = {
 					hover: 'hover:text-gray-700 hover:bg-gray-200',
 					active: 'active:text-gray-700 active:bg-gray-200'
 				},
-				purple: {}
+				purple: {},
+				red: {
+					color: 'text-red-600',
+					hover: 'hover:bg-red-100 hover:text-red-700',
+					active: 'active:bg-red-100 active:text-red-700'
+				}
 			}
 		}
 	}
@@ -86,11 +105,11 @@ interface Props<T extends React.ElementType> {
 	children: React.ReactNode
 	variant?: 'filled' | 'outlined' | 'text'
 	size?: 'sm' | 'md' | 'lg'
-	color?: 'blue' | 'gray' | 'purple'
+	color?: 'blue' | 'gray' | 'purple' | 'red'
 	fullWidth?: boolean
 }
 
-export default function AppButton<T extends React.ElementType>(
+export default function AppButton<T extends React.ElementType = 'button'>(
 	props: Props<T> & Omit<React.ComponentPropsWithoutRef<T>, keyof Props<T>>
 ) {
 	const {
