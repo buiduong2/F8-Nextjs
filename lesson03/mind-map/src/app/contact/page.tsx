@@ -2,7 +2,13 @@ import React from 'react'
 import ContactInput from './ContactInput'
 import ContactTextarea from './ContactTextarea'
 import AppButton from '@/components/ui/AppButton'
+import { Metadata } from 'next'
+import { meta } from '@/constants/meta'
 
+export const metadata: Metadata = {
+	...meta,
+	title: 'Bảng giá - ' + meta.title
+}
 export default function PageContact() {
 	return (
 		<div className="container mx-auto py-20">

@@ -4,8 +4,10 @@ import { FaSave } from 'react-icons/fa'
 import { FaShare } from 'react-icons/fa6'
 import MindMapShareModal from './MindMapShareModal'
 import { useState } from 'react'
+import MindMap from './MindMap'
+import { ReactFlowProvider } from '@xyflow/react'
 
-export default function page() {
+export default function MindMapPage() {
 	const [isOpenModal, setIsOpenModal] = useState(false)
 
 	return (
@@ -38,6 +40,9 @@ export default function page() {
 					</div>
 				</div>
 			</div>
+			<ReactFlowProvider>
+				<MindMap />
+			</ReactFlowProvider>
 		</div>
 	)
 }

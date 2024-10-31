@@ -1,5 +1,11 @@
 import AppButton from '@/components/ui/AppButton'
+import { Metadata } from 'next'
 import Image from 'next/image'
+import { meta } from '@/constants/meta'
+
+export const metadata: Metadata = {
+	...meta
+}
 
 const features = [
 	{
@@ -39,6 +45,7 @@ export default function HomePage() {
 						<Image
 							src={'/imgs/so-do-tu-duy.webp'}
 							width={672}
+							priority
 							height={352}
 							alt="Sơ đồ tư duy"
 							className="h-auto w-auto"

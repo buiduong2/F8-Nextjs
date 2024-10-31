@@ -3,6 +3,7 @@ import './globals.css'
 import TheHeader from '@/components/header/TheHeader'
 import TheFooter from '@/components/footer/TheFooter'
 import localFont from 'next/font/local'
+import { UserProvider } from '@auth0/nextjs-auth0/client'
 
 export const metadata: Metadata = {
 	title: 'Create Next App',
@@ -27,13 +28,15 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body
-				className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
-			>
-				<TheHeader />
-				<main className="flex-grow">{children}</main>
-				<TheFooter />
-			</body>
+			<UserProvider>
+				<body
+					className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
+				>
+					<TheHeader />
+					<main className="flex-grow">{children}</main>
+					<TheFooter />
+				</body>
+			</UserProvider>
 		</html>
 	)
 }

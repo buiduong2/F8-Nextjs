@@ -3,10 +3,11 @@ import NavLinkItem from './NavLinkItem'
 import NavLoginBtn from './NavLoginBtn'
 import NavRegisterBtn from './NavRegisterBtn'
 import AppButton from '../ui/AppButton'
-
-export default function TheHeader() {
-	const isAuthenticated = true
-
+import { getSession } from '@auth0/nextjs-auth0/edge';
+export default async function TheHeader() {
+	const session = await getSession()
+	const user = session?.user
+	const isAuthenticated = !!user
 	return (
 		<header className="p-4">
 			<div className="container mx-auto">
@@ -24,8 +25,8 @@ export default function TheHeader() {
 						{isAuthenticated ? (
 							<>
 								<li>
-									<AppButton as="button" variant="text">
-										Hi, Duong Bui
+									<AppButton as="button" variant="text" className='cursor-text'>
+										Hi, {user.name}
 									</AppButton>
 								</li>
 								<li>
@@ -40,8 +41,8 @@ export default function TheHeader() {
 
 								<li>
 									<AppButton
-										as={Link}
-										href="/my-mindmap"
+										as={'a'}
+										href="/api/auth/logout"
 										variant="outlined"
 									>
 										Đăng xuất
@@ -60,3 +61,4 @@ export default function TheHeader() {
 		</header>
 	)
 }
+export const runtime = 'edge';

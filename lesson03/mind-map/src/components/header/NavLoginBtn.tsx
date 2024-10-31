@@ -4,7 +4,12 @@ import AppButton from '../ui/AppButton'
 export default function NavLoginBtn() {
 	return (
 		<li>
-			<AppButton as={'a'} variant={'text'} className="cursor-pointer">
+			<AppButton
+				as={'a'}
+				href="/api/auth/login"
+				variant={'text'}
+				className="cursor-pointer"
+			>
 				Đăng nhập
 			</AppButton>
 		</li>

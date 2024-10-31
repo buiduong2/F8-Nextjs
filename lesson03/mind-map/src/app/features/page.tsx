@@ -3,7 +3,13 @@ import React from 'react'
 
 import FeatureCardItem, { Props } from './FeatureCardItem'
 import { FaBolt, FaCode, FaWrench } from 'react-icons/fa6'
+import { Metadata } from 'next'
+import { meta } from '@/constants/meta'
 
+export const metadata: Metadata = {
+	...meta,
+	title: 'Tính năng chính - ' + meta.title
+}
 
 const featureCards: Props[] = [
 	{

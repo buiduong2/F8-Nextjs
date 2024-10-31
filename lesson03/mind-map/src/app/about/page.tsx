@@ -2,6 +2,13 @@ import Image from 'next/image'
 import React from 'react'
 import AboutHeading from './AboutHeading'
 import AboutParaghpah from './Aboutparagraph'
+import { Metadata } from 'next'
+import { meta } from '@/constants/meta'
+
+export const metadata: Metadata = {
+	...meta,
+	title: 'Giới thiệu - ' + meta.title
+}
 
 export default function PageAbout() {
 	const sections = {

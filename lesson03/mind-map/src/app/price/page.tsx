@@ -1,5 +1,12 @@
 import React from 'react'
 import PriceCardItem, { Props as CardProp } from './PriceCardItem'
+import { Metadata } from 'next'
+import { meta } from '@/constants/meta'
+
+export const metadata: Metadata = {
+	...meta,
+	title: 'Bảng giá - ' + meta.title
+}
 
 const plans: CardProp[] = [
 	{
