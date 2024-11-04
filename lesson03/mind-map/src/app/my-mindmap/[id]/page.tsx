@@ -1,48 +1,55 @@
-'use client'
-import AppButton from '@/components/ui/AppButton'
-import { FaSave } from 'react-icons/fa'
-import { FaShare } from 'react-icons/fa6'
-import MindMapShareModal from './MindMapShareModal'
-import { useState } from 'react'
-import MindMap from './MindMap'
-import { ReactFlowProvider } from '@xyflow/react'
+import { Metadata } from 'next'
+import MindMapPageClient from './MindMapPage'
+import { fetchMindMapById } from '@/services/mindmap'
+import { MindMap } from '@/app/api/mindmap/route'
+import { getSession } from '@auth0/nextjs-auth0'
+import { notFound, redirect } from 'next/navigation'
+interface Props {
+	params: { id: string }
+}
+export async function generateMetadata(ctx: Props): Promise<Metadata> {
+	const id = ctx.params.id
+	const { data: mindmap } = await getMindmap(id)
+	const title = mindmap.title
+	const description = mindmap.description
+	return {
+		title,
+		description,
+		openGraph: {
+			title,
+			description,
+			images: ['/imgs/so-do-tu-duy.webp']
+		}
+	}
+}
 
-export default function MindMapPage() {
-	const [isOpenModal, setIsOpenModal] = useState(false)
+export default async function MindMapPage({ params }: Props) {
+	const { data: mindmap, owner } = await getMindmap(params.id)
+	return <MindMapPageClient mindmap={mindmap} isOwner={owner} />
+}
 
-	return (
-		<div>
-			<MindMapShareModal
-				isOpenModal={isOpenModal}
-				setIsOpenModal={setIsOpenModal}
-			/>
-			<div className="container mx-auto">
-				<div className="flex items-center justify-between py-5">
-					<div className="flex-grow">
-						<h1 className="text-2xl md:text-4xl font-medium my-2 outline-0">
-							Mind Map không có tên
-						</h1>
-						<p className="outline-0">Chưa có mô tả</p>
-					</div>
-					<div className="flex gap-3">
-						<AppButton
-							className="flex gap-3 items-center"
-							color="purple"
-						>
-							<FaSave /> Lưu thay đổi
-						</AppButton>
-						<AppButton
-							onClick={() => setIsOpenModal(true)}
-							className="flex gap-3 items-center"
-						>
-							<FaShare /> Chia sẻ
-						</AppButton>
-					</div>
-				</div>
-			</div>
-			<ReactFlowProvider>
-				<MindMap />
-			</ReactFlowProvider>
-		</div>
-	)
+async function getMindmap(
+	id: string
+): Promise<{ data: MindMap; owner: boolean }> {
+	const session = await getSession()
+	const mindmap = await fetchMindMapById(id)
+	if (mindmap) {
+		if (session?.user?.sub === mindmap.userId) {
+			return {
+				data: mindmap,
+				owner: true
+			}
+		}
+		if (!mindmap.isPublic && !session?.user) {
+			return redirect('/api/auth/login')
+		}
+		if (mindmap.isPublic) {
+			return {
+				data: mindmap,
+				owner: false
+			}
+		}
+	}
+
+	return notFound()
 }

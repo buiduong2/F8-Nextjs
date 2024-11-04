@@ -3,7 +3,7 @@ import React from 'react'
 import AboutHeading from './AboutHeading'
 import AboutParaghpah from './Aboutparagraph'
 import { Metadata } from 'next'
-import { meta } from '@/constants/meta'
+import { meta } from '@/constants'
 
 export const metadata: Metadata = {
 	...meta,

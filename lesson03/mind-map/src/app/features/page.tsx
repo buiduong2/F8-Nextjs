@@ -4,7 +4,7 @@ import React from 'react'
 import FeatureCardItem, { Props } from './FeatureCardItem'
 import { FaBolt, FaCode, FaWrench } from 'react-icons/fa6'
 import { Metadata } from 'next'
-import { meta } from '@/constants/meta'
+import { meta } from '@/constants'
 
 export const metadata: Metadata = {
 	...meta,

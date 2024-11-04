@@ -12,7 +12,7 @@ export default function AppModal(props: Props) {
 	return (
 		<>
 			{isOpen && (
-				<div className="fixed inset-0">
+				<div className="fixed inset-0 z-50">
 					<div
 						className="bg-slate-900/50 absolute inset-0"
 						onClick={handleClickOverlay}

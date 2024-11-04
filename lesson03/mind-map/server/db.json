@@ -1,0 +1,54 @@
+{
+  "mindmaps": [
+    {
+      "userId": "google-oauth2|107359085844620587115",
+      "id": "2",
+      "title": "Mindmap có tên",
+      "description": "Chưa có mô tả",
+      "isPublic": true,
+      "nodes": [],
+      "edges": [],
+      "createdAt": ""
+    },
+    {
+      "userId": "google-oauth2|107359085844620587115",
+      "id": "4",
+      "title": "Mind Map không có tên1",
+      "description": "Chưa có mô tả",
+      "isPublic": true,
+      "nodes": [],
+      "edges": [],
+      "createdAt": ""
+    },
+    {
+      "userId": "google-oauth2|107359085844620587115",
+      "id": "Ooqh5Wh68a3_J0k4x2Oa_",
+      "title": "Mindmap không có tên",
+      "description": "Chưa có mô tả",
+      "edges": [],
+      "nodes": [],
+      "isPublic": false,
+      "createdAt": "01/11/2024"
+    },
+    {
+      "userId": "google-oauth2|107359085844620587115",
+      "id": "b8c0PvTCplTmqE06lNL4z",
+      "title": "Mindmap không có tên",
+      "description": "Chưa có mô tả",
+      "edges": [],
+      "nodes": [],
+      "isPublic": false,
+      "createdAt": "01/11/2024"
+    },
+    {
+      "userId": "google-oauth2|107359085844620587115",
+      "id": "vPsN1NEeQR7Sn8vzG512x",
+      "title": "Mindmap Có t",
+      "description": "Đã có mô tả là 123",
+      "edges": [],
+      "nodes": [],
+      "isPublic": true,
+      "createdAt": "02/11/2024"
+    }
+  ]
+}

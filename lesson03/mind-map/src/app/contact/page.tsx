@@ -3,7 +3,7 @@ import ContactInput from './ContactInput'
 import ContactTextarea from './ContactTextarea'
 import AppButton from '@/components/ui/AppButton'
 import { Metadata } from 'next'
-import { meta } from '@/constants/meta'
+import { meta } from '@/constants'
 
 export const metadata: Metadata = {
 	...meta,

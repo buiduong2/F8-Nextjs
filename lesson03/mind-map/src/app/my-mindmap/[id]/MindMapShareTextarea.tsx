@@ -1,6 +1,6 @@
-import { HTMLAttributes, useId } from 'react'
+import { TextareaHTMLAttributes, useId } from 'react'
 
-interface Props extends HTMLAttributes<HTMLTextAreaElement> {
+interface Props extends TextareaHTMLAttributes<HTMLTextAreaElement> {
 	label: string
 }
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import PriceCardItem, { Props as CardProp } from './PriceCardItem'
 import { Metadata } from 'next'
-import { meta } from '@/constants/meta'
+import { meta } from '@/constants'
 
 export const metadata: Metadata = {
 	...meta,

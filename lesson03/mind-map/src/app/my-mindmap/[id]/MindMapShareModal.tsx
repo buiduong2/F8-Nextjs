@@ -9,22 +9,34 @@ import MindMapShareModalPrivate from './MindMapShareModalPrivate'
 import MindMapShareModalPublic from './MindMapShareModalPublic'
 import { FaPlus } from 'react-icons/fa6'
 import { FaTimes } from 'react-icons/fa'
-
-export type ActionType = { type: string; payload: object }
+import { MindMap } from '@/app/api/mindmap/route'
 
 type Props = {
-	onSubmit?: (action: ActionType) => void
+	onSubmit?: (mindmap: MindMap) => void
+	mindmap: MindMap
 	isOpenModal: boolean
 	setIsOpenModal: React.Dispatch<SetStateAction<boolean>>
 }
 
 export default function MindMapShareModal(props: Props) {
 	const { onSubmit, isOpenModal, setIsOpenModal } = props
-	const [currentTab, setCurrentTab] = useState<number | string>('private')
-	const [action, setAction] = useState<ActionType>({
-		type: 'private',
-		payload: {}
-	})
+	const [currentTab, setCurrentTab] = useState<number | string>(
+		props.mindmap.isPublic ? 'public' : 'private'
+	)
+	const [mindmap, setMindmap] = useState<MindMap>(props.mindmap)
+
+	function handleOnChange(mindmap: MindMap) {
+		setMindmap(prev => ({ ...mindmap, isPublic: prev.isPublic }))
+	}
+
+	useEffect(() => {
+		if (currentTab === 'private') {
+			setMindmap(prev => ({ ...prev, isPublic: false }))
+		} else {
+			setMindmap(prev => ({ ...prev, isPublic: true }))
+		}
+	}, [currentTab])
+
 	const tabs = [
 		{
 			id: 'private',
@@ -34,33 +46,33 @@ export default function MindMapShareModal(props: Props) {
 		{
 			id: 'public',
 			label: 'Công khai',
-			panel: <MindMapShareModalPublic onChange={handleOnChange} />
+			panel: (
+				<MindMapShareModalPublic
+					mindmap={mindmap}
+					onChange={handleOnChange}
+				/>
+			)
 		}
 	]
-
-	useEffect(() => {
-		if (currentTab === 'private') {
-			setAction({ type: 'private', payload: {} })
-		} else {
-			setAction({ type: 'public', payload: {} })
-		}
-	}, [currentTab])
+	const defaultTabId = props.mindmap.isPublic ? 'public' : 'private'
 
 	return (
 		<AppModal
 			isOpen={isOpenModal}
 			handleClickOverlay={() => setIsOpenModal(false)}
 		>
-			<AppTab defaultTabKey={tabs[0].id} setCurrenTab={setCurrentTab}>
+			<AppTab defaultTabKey={defaultTabId} setCurrenTab={setCurrentTab}>
 				<div className="p-6 pb-4 flex items-center justify-center gap-5">
 					{tabs.map(tab => (
 						<AppTabItem value={tab.id} key={tab.id}>
 							<label className="cursor-pointer flex items-center">
-								<input
-									type="radio"
-									name="tab"
-									checked={currentTab === tab.id}
-									className="mr-2 size-4"
+								<div
+									className={
+										'size-4 mr-4 rounded-full border-2 ' +
+										(currentTab === tab.id
+											? 'border-white ring-1 bg-blue-600'
+											: '')
+									}
 								/>
 								<span
 									className={
@@ -108,15 +120,11 @@ export default function MindMapShareModal(props: Props) {
 	)
 
 	function handleOnClickConfirm() {
-		onSubmit?.(action)
+		onSubmit?.(mindmap)
 		setIsOpenModal(false)
 	}
 
 	function handleOnClickCancel() {
 		setIsOpenModal(false)
-	}
-
-	function handleOnChange(action: ActionType) {
-		console.log(action)
 	}
 }
