@@ -60,11 +60,11 @@ export default function PageAbout() {
 	}
 	return (
 		<div>
-			<div className="container mx-auto py-16">
+			<div className="container mx-auto py-16 px-4">
 				<div className="flex flex-col gap-20">
 					<section>
-						<div className="flex gap-8">
-							<div className="w-5/12">
+						<div className="grid grid-cols-12 gap-8">
+							<div className="w-10/12 col-span-full mx-auto text-center lg:col-span-5 lg:text-start lg:w-full">
 								<div className="h-full flex flex-col justify-center">
 									<AboutHeading>
 										{sections.us.title}
@@ -74,10 +74,10 @@ export default function PageAbout() {
 									</AboutParaghpah>
 								</div>
 							</div>
-							<div className="w-7/12">
-								{/*  eslint-disable-next-line jsx-a11y/alt-text */}
+							<div className="col-span-full lg:col-span-7">
 								<Image
 									{...sections.us.img}
+									alt={sections.us.img.alt}
 									priority={true}
 									className="w-full"
 								/>
@@ -85,8 +85,8 @@ export default function PageAbout() {
 						</div>
 					</section>
 					<section>
-						<div className="flex gap-8">
-							<div className="w-5/12">
+						<div className="grid grid-cols-12 gap-8  items-center">
+							<div className="w-10/12 col-span-full mx-auto text-center lg:col-span-5 lg:text-start lg:w-full">
 								<div className="h-full flex flex-col justify-center">
 									<AboutHeading>
 										{sections.story.title}
@@ -96,7 +96,7 @@ export default function PageAbout() {
 									</AboutParaghpah>
 								</div>
 							</div>
-							<div className="w-7/12">
+							<div className="col-span-full lg:col-span-7">
 								<div>
 									<ul className="flex gap-4 shadow-lg rounded-md">
 										{sections.story.imgs.map(
@@ -106,8 +106,10 @@ export default function PageAbout() {
 													className="pb-6 p-4"
 												>
 													<figure>
-														{/*  eslint-disable-next-line jsx-a11y/alt-text */}
-														<Image {...img} />
+														<Image
+															{...img}
+															alt={img.alt}
+														/>
 														<figcaption className="font-medium text-xl leading-5 text-gray-800 mt-4 text-center">
 															{img.alt}
 														</figcaption>

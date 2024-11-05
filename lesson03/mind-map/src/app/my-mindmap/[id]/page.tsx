@@ -1,5 +1,5 @@
 import { Metadata } from 'next'
-import MindMapPageClient from './MindMapPage'
+import MindMapPageClient from './MindMapClientPage'
 import { fetchMindMapById } from '@/services/mindmap'
 import { MindMap } from '@/app/api/mindmap/route'
 import { getSession } from '@auth0/nextjs-auth0'

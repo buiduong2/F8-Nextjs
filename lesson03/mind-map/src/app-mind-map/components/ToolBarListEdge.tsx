@@ -70,7 +70,7 @@ export default function ToolBarListEdge(props: Props) {
 								x2="100"
 								y2="10"
 								stroke="black"
-								stroke-width="2"
+								strokeWidth="2"
 							/>
 						</svg>
 					)}

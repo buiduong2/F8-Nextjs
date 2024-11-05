@@ -46,11 +46,11 @@ const footerLinkLists = [
 ]
 export default function TheFooter() {
 	return (
-		<footer className="bg-gray-100 pt-16 pb-8">
+		<footer className="bg-gray-100 pt-16 pb-8 px-2">
 			<article className="container mx-auto">
-				<div className="flex">
+				<div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5">
 					{footerLinkLists.map((list, index) => (
-						<div key={index} className="w-1/5">
+						<div key={index} className='text-center md:text-start'>
 							<article>
 								<h5 className="text-xl font-bold mb-6">
 									{list.header}
@@ -71,8 +71,8 @@ export default function TheFooter() {
 						</div>
 					))}
 
-					<div className="w-1/5">
-						<article>
+					<div className='col-span-full lg:col-span-1 lg:block flex justify-center items-center '>
+						<article >
 							<h3 className="text-xl font-bold mb-6">
 								Stay connected
 							</h3>
@@ -101,17 +101,17 @@ export default function TheFooter() {
 			<hr className="bg-slate-300  my-8 mx-4" />
 
 			<article className="container mx-auto">
-				<div className="flex">
-					<div className="w-1/4">
+				<div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 justify-center gap-2">
+					<div className='text-center md:text-start'>
 						<h5 className="font-bold mb-2">PWR</h5>
 					</div>
-					<div className="w-1/4">
+					<div className='text-center md:text-start'>
 						<h5 className="font-bold mb-2">Address</h5>
 						<address className="not-italic mb-4 text-sm">
 							123 6th St. <br /> Melbourne, FL 32904
 						</address>
 					</div>
-					<div className="w-1/4">
+					<div className='text-center md:text-start'>
 						<h5 className="font-bold mb-2">Free Resources </h5>
 						<p className="mb-4 text-sm">
 							Use our HTML blocks for <strong>FREE</strong>
@@ -119,7 +119,7 @@ export default function TheFooter() {
 							<em>All are MIT License</em>
 						</p>
 					</div>
-					<div className="w-1/4">
+					<div className='col-span-1 sm:col-span-full md:col-span-1'>
 						<div className="flex justify-center">
 							<AppButton color="purple">Get Started</AppButton>
 						</div>

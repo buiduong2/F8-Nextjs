@@ -16,6 +16,7 @@ export default function NavLinkItem(props: Props) {
 	return (
 		<li>
 			<AppButton
+				fullWidth
 				as={Link}
 				variant={pathname === href ? 'filled' : 'text'}
 				color={pathname === href ? 'blue' : 'gray'}

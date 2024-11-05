@@ -5,7 +5,7 @@ import { ReactFlowProvider } from '@xyflow/react'
 
 export default function Main() {
 	return (
-		<div className='material'>
+		<div>
 			<ThemeProvider>
 				<ReactFlowProvider>
 					<App />

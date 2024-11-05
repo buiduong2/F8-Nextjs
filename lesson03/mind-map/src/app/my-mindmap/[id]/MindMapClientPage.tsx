@@ -5,6 +5,7 @@ import { FaShare } from 'react-icons/fa6'
 import MindMapShareModal from './MindMapShareModal'
 import { ChangeEvent, useEffect, useRef, useState } from 'react'
 import { MindMap } from '@/app/api/mindmap/route'
+import MindMapApp from '@/app-mind-map/Main'
 
 interface Props {
 	mindmap: MindMap
@@ -116,13 +117,13 @@ export default function MindMapPageClient({ mindmap, isOwner }: Props) {
 					)}
 				</div>
 			</div>
+			<MindMapApp />
 			<MindMapShareModal
 				isOpenModal={isOpenModal}
 				setIsOpenModal={setIsOpenModal}
 				mindmap={data}
 				onSubmit={handleOnSubmitModal}
 			/>
-			{/* <MindMapApp /> */}
 		</div>
 	)
 }

@@ -68,7 +68,7 @@ const plans: CardProp[] = [
 
 export default function PagePrice() {
 	return (
-		<div className="container mx-auto pt-10 pb-36">
+		<div className="container mx-auto pt-10 pb-36 px-4">
 			<div className="max-w-96 w-full mx-auto text-center mb-14">
 				<h1 className="text-5xl font-semibold mb-6">
 					<span className="text-indigo-600">Flexible</span> Plans
@@ -78,11 +78,11 @@ export default function PagePrice() {
 				</p>
 			</div>
 
-			<div className="flex justify-center">
+			<div className="flex flex-wrap justify-center md:flex-wrap-reverse lg:flex-wrap">
 				{plans.map((plan, index) => (
 					<div
-						className={`w-1/3 max-w-96 
-							${!plan.isPriority ? 'py-8' : ''}`}
+						className={`w-full md:w-1/2 lg:w-1/3 max-w-96 
+							${!plan.isPriority ? 'py-8 order-3 md:order-2 lg:order-1' : 'order-2 md:order-3 lg:order-1'}`}
 						key={index}
 					>
 						<PriceCardItem
