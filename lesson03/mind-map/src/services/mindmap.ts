@@ -13,7 +13,6 @@ export async function fetchMindMapByUserId(
 		if (res.ok) {
 			return res.json()
 		}
-
 		throw new Error('Faild when fetch MindMap')
 	} catch {
 		return null

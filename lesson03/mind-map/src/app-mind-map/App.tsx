@@ -30,7 +30,7 @@ const initialNodes: Node<NodeRecord>[] = [
 		id: '1',
 		position: { x: 0, y: 0 },
 		data: {
-			label: '1',
+			label: 'Root',
 			text: {
 				color: 'black'
 			},

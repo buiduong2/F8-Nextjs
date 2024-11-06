@@ -1,4 +1,6 @@
+'use client'
 import React from 'react'
+import AppLoading from './AppLoadingIcon'
 
 const style = {
 	styles: {
@@ -107,6 +109,7 @@ interface Props<T extends React.ElementType> {
 	size?: 'sm' | 'md' | 'lg'
 	color?: 'blue' | 'gray' | 'purple' | 'red'
 	fullWidth?: boolean
+	isLoading?: boolean
 }
 
 export default function AppButton<T extends React.ElementType = 'button'>(
@@ -120,6 +123,7 @@ export default function AppButton<T extends React.ElementType = 'button'>(
 		className = '',
 		children,
 		as = 'button',
+		isLoading,
 		...rest
 	} = props
 
@@ -139,7 +143,12 @@ export default function AppButton<T extends React.ElementType = 'button'>(
 	const Component = as
 
 	return (
-		<Component {...rest} className={btnClasses.join(' ')}>
+		<Component
+			{...rest}
+			className={'flex items-center ' + btnClasses.join(' ')}
+			disabled={isLoading}
+		>
+			{isLoading && <AppLoading />}
 			{children}
 		</Component>
 	)

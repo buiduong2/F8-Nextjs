@@ -42,16 +42,22 @@ export default function MindMapPageClient({ mindmap, isOwner }: Props) {
 	const [isEditing, setIsEditing] = useState<string | null>(null)
 	const mindmapRef = useRef<MindMap | null>(mindmap)
 	const titleRef = useRef<HTMLTitleElement>()
+	const [isLoading, setIsLoading] = useState<'save' | 'share' | null>(null)
 
 	async function handleSaveData() {
-		const newData = await fetchSave({
-			...data,
-			nodes: mindmapRef.current?.nodes || [],
-			edges: mindmapRef.current?.edges || []
-		})
-		if (newData) {
-			setData(newData)
-			mindmapRef.current = newData
+		setIsLoading('save')
+		try {
+			const newData = await fetchSave({
+				...data,
+				nodes: mindmapRef.current?.nodes || [],
+				edges: mindmapRef.current?.edges || []
+			})
+			if (newData) {
+				setData(newData)
+				mindmapRef.current = newData
+			}
+		} finally {
+			setIsLoading(null)
 		}
 	}
 
@@ -64,10 +70,15 @@ export default function MindMapPageClient({ mindmap, isOwner }: Props) {
 	}
 
 	async function handleOnSubmitModal(mindmap: MindMap) {
-		const newData = await fetchSave(mindmap)
-		if (newData) {
-			setData(newData)
-			titleRef.current!.textContent = newData.title
+		setIsLoading('share')
+		try {
+			const newData = await fetchSave(mindmap)
+			if (newData) {
+				setData(newData)
+				titleRef.current!.textContent = newData.title
+			}
+		} finally {
+			setIsLoading(null)
 		}
 	}
 
@@ -119,12 +130,14 @@ export default function MindMapPageClient({ mindmap, isOwner }: Props) {
 								className="flex gap-3 items-center"
 								color="purple"
 								onClick={handleSaveData}
+								isLoading={isLoading === 'save'}
 							>
 								<FaSave /> Lưu thay đổi
 							</AppButton>
 							<AppButton
 								onClick={() => setIsOpenModal(true)}
 								className="flex gap-3 items-center"
+								isLoading={isLoading === 'share'}
 							>
 								<FaShare /> Chia sẻ
 							</AppButton>

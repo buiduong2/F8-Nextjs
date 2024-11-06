@@ -15,17 +15,23 @@ type Props = {
 export default function MindMapList({ mindmaps: initialMindmap }: Props) {
 	const [mindmaps, setMindmaps] = useState(initialMindmap)
 	const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set())
+	const [isLoading, setIsLoading] = useState<'create' | 'delete' | null>(null)
 	const router = useRouter()
 
 	async function handleOnClickCreate() {
-		const res = await fetch('/api/mindmap', {
-			method: 'POST'
-		})
+		setIsLoading('create')
+		try {
+			const res = await fetch('/api/mindmap', {
+				method: 'POST'
+			})
 
-		if (res.ok) {
-			const data: MindMap = await res.json()
+			if (res.ok) {
+				const data: MindMap = await res.json()
 
-			router.push('/my-mindmap/' + data.id)
+				router.push('/my-mindmap/' + data.id)
+			}
+		} finally {
+			setIsLoading(null)
 		}
 	}
 
@@ -62,17 +68,26 @@ export default function MindMapList({ mindmaps: initialMindmap }: Props) {
 	}
 
 	async function handleOnClickDeleteGroup() {
-		if (selectedIds.size === 0) return
-		const res = await fetch('/api/mindmap', {
-			method: 'DELETE',
-			body: JSON.stringify(
-				mindmaps.map(map => map.id).filter(id => selectedIds.has(id))
-			)
-		})
+		setIsLoading('delete')
+		try {
+			if (selectedIds.size === 0) return
+			const res = await fetch('/api/mindmap', {
+				method: 'DELETE',
+				body: JSON.stringify(
+					mindmaps
+						.map(map => map.id)
+						.filter(id => selectedIds.has(id))
+				)
+			})
 
-		if (res.ok) {
-			setMindmaps(prev => prev.filter(prev => !selectedIds.has(prev.id)))
-			setSelectedIds(new Set())
+			if (res.ok) {
+				setMindmaps(prev =>
+					prev.filter(prev => !selectedIds.has(prev.id))
+				)
+				setSelectedIds(new Set())
+			}
+		} finally {
+			setIsLoading(null)
 		}
 	}
 
@@ -88,6 +103,7 @@ export default function MindMapList({ mindmaps: initialMindmap }: Props) {
 						className="px-10 bg-white"
 						variant="text"
 						color="blue"
+						isLoading={isLoading === 'create'}
 					>
 						Tạo mới
 					</AppButton>
@@ -96,6 +112,7 @@ export default function MindMapList({ mindmaps: initialMindmap }: Props) {
 						variant="text"
 						color="red"
 						onClick={handleOnClickDeleteGroup}
+						isLoading={isLoading === 'delete'}
 					>
 						Xóa
 					</AppButton>
