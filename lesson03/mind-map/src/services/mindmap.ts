@@ -8,7 +8,7 @@ export async function fetchMindMapByUserId(
 ): Promise<MindMap[] | null> {
 	try {
 		const res = await fetch(resourceUrl + `?userId=${userId}`, {
-			cache: 'no-cache'
+			cache: 'no-store'
 		})
 		if (res.ok) {
 			return res.json()
@@ -40,7 +40,7 @@ export async function fetchMindMapByIdInAndUserId(
 		const res = await fetch(
 			resourceUrl + `?userId=${userId}&id=${ids.join('&id=')}`,
 			{
-				cache: 'no-cache'
+				cache: 'no-store'
 			}
 		)
 		if (res.ok) {

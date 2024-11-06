@@ -115,6 +115,7 @@ export default function App() {
 			mindmapRef.current.nodes = nodes
 			mindmapRef.current.edges = edges
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [nodes, edges])
 
 	return (

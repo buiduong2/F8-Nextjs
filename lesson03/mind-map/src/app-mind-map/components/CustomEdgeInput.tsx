@@ -38,6 +38,7 @@ export default function CustomEdgeInput(props: Props) {
 		updateEdgeData(id, {
 			label: e.target.value
 		})
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 
 	useEffect(() => {

@@ -48,6 +48,7 @@ export default function TextUpdateNode({
 	const onBlur = useCallback((evt: FocusEvent<HTMLInputElement>) => {
 		updateNodeData(id, { label: evt.target.value })
 		setIsEditing(false)
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 	return (
 		<>
