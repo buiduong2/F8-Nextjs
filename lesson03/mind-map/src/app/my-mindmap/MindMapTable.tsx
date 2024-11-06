@@ -1,21 +1,20 @@
 'use client'
 import AppButton from '@/components/ui/AppButton'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { useEffect, useState } from 'react'
 import { FaTrash } from 'react-icons/fa'
 import { FaPenToSquare } from 'react-icons/fa6'
 import { MindMap } from '../api/mindmap/route'
 import css from './mindmap.module.css'
-import { useRouter } from 'next/navigation'
+import AppLoading from '@/components/ui/AppLoadingIcon'
 
-type Props = {
-	mindmaps: MindMap[]
-}
-
-export default function MindMapList({ mindmaps: initialMindmap }: Props) {
-	const [mindmaps, setMindmaps] = useState(initialMindmap)
+export default function MindMapList() {
+	const [mindmaps, setMindmaps] = useState<MindMap[]>([])
 	const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set())
-	const [isLoading, setIsLoading] = useState<'create' | 'delete' | null>(null)
+	const [isLoading, setIsLoading] = useState<
+		'create' | 'delete' | 'table' | null
+	>('table')
 	const router = useRouter()
 
 	async function handleOnClickCreate() {
@@ -91,6 +90,22 @@ export default function MindMapList({ mindmaps: initialMindmap }: Props) {
 		}
 	}
 
+	useEffect(() => {
+		async function fetchMindmap() {
+			try {
+				const res = await fetch('/api/mindmap')
+				if (res.ok) {
+					const data = await res.json()
+					setMindmaps(data)
+				}
+			} finally {
+				setIsLoading(null)
+			}
+		}
+
+		fetchMindmap()
+	}, [])
+
 	return (
 		<div className="rounded overflow-hidden shadow">
 			<div className="flex justify-between bg-indigo-400 py-4 px-7 items-center">
@@ -120,70 +135,86 @@ export default function MindMapList({ mindmaps: initialMindmap }: Props) {
 			</div>
 
 			<div className="py-4 px-7">
-				<table className={css.table}>
-					<thead className="">
-						<tr>
-							<th className={css.thCheckbox}>
-								<input
-									type="checkbox"
-									checked={
-										selectedIds.size === mindmaps.length
-									}
-									onChange={handleOnClickCheckAll}
-								/>
-							</th>
-							<th className={css.thName}>Tên</th>
-							<th className={css.thCreatedAt}>Tạo lúc</th>
-							<th className={css.thAction}>Hành động</th>
-						</tr>
-					</thead>
-					<tbody>
-						{mindmaps.length === 0 && (
+				{isLoading === 'table' ? (
+					<div className="flex justify-center">
+						<AppLoading className="size-10" />
+					</div>
+				) : (
+					<table className={css.table}>
+						<thead className="">
 							<tr>
-								<td
-									colSpan={4}
-									className="italic text-xl !text-center"
-								>
-									Chưa có Mindmap
-								</td>
-							</tr>
-						)}
-						{mindmaps.map(mindmap => (
-							<tr key={mindmap.id}>
-								<td className={css.tdCheckbox}>
+								<th className={css.thCheckbox}>
 									<input
 										type="checkbox"
-										checked={selectedIds.has(mindmap.id)}
-										onChange={() =>
-											handleOnChangeSelectedId(mindmap.id)
+										checked={
+											selectedIds.size === mindmaps.length
 										}
+										onChange={handleOnClickCheckAll}
 									/>
-								</td>
-								<td className={css.tdName}>
-									<Link href={'/my-mindmap/' + mindmap.id}>
-										<h5>{mindmap.title}</h5>
-										<p>{mindmap.description}</p>
-									</Link>
-								</td>
-								<td className={css.tdCreatedAt}>
-									{mindmap.createdAt}
-								</td>
-								<td className={css.tdAction}>
-									<Link href={'/my-mindmap/' + mindmap.id}>
-										<FaPenToSquare />
-									</Link>
-									<button
-										onClick={() =>
-											handleOnClickDeleteItem(mindmap.id)
-										}
-									>
-										<FaTrash />
-									</button>
-								</td>
+								</th>
+								<th className={css.thName}>Tên</th>
+								<th className={css.thCreatedAt}>Tạo lúc</th>
+								<th className={css.thAction}>Hành động</th>
 							</tr>
-						))}
-					</tbody>
-				</table>
+						</thead>
+						<tbody>
+							{mindmaps.length === 0 && (
+								<tr>
+									<td
+										colSpan={4}
+										className="italic text-xl !text-center"
+									>
+										Chưa có Mindmap
+									</td>
+								</tr>
+							)}
+							{mindmaps.map(mindmap => (
+								<tr key={mindmap.id}>
+									<td className={css.tdCheckbox}>
+										<input
+											type="checkbox"
+											checked={selectedIds.has(
+												mindmap.id
+											)}
+											onChange={() =>
+												handleOnChangeSelectedId(
+													mindmap.id
+												)
+											}
+										/>
+									</td>
+									<td className={css.tdName}>
+										<Link
+											href={'/my-mindmap/' + mindmap.id}
+										>
+											<h5>{mindmap.title}</h5>
+											<p>{mindmap.description}</p>
+										</Link>
+									</td>
+									<td className={css.tdCreatedAt}>
+										{mindmap.createdAt}
+									</td>
+									<td className={css.tdAction}>
+										<Link
+											href={'/my-mindmap/' + mindmap.id}
+										>
+											<FaPenToSquare />
+										</Link>
+										<button
+											onClick={() =>
+												handleOnClickDeleteItem(
+													mindmap.id
+												)
+											}
+										>
+											<FaTrash />
+										</button>
+									</td>
+								</tr>
+							))}
+						</tbody>
+					</table>
+				)}
 			</div>
 		</div>
 	)

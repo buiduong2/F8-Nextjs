@@ -6,6 +6,7 @@ import {
 import { getSession } from '@auth0/nextjs-auth0'
 import { NextResponse } from 'next/server'
 import { MindMap } from '../route'
+import { revalidatePath } from 'next/cache'
 
 type Context = {
 	params: Promise<{ id: string }>
@@ -36,6 +37,7 @@ export const PUT = async function editMindmapById(req: Request, ctx: Context) {
 	const body: MindMap = await req.json()
 	const result = await editMindMapByIdAndUserId(id, session!.user.sub, body)
 	if (result) {
+		revalidatePath('/my-mindmap/' + result.id)
 		return NextResponse.json(result)
 	}
 	return NextResponse.json(
@@ -56,6 +58,7 @@ export const DELETE = async function deleteMindmapById(
 
 	const res = await deleteMindMapByIdAndUserId(id, session!.user.sub)
 	if (res) {
+		revalidatePath('/my-mindmap')
 		return NextResponse.json({})
 	}
 	return NextResponse.json(

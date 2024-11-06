@@ -13,6 +13,7 @@ import {
 } from 'react'
 import { MindMap } from '@/app/api/mindmap/route'
 import MindMapApp from '@/app-mind-map/Main'
+import { useRouter } from 'next/navigation'
 
 interface Props {
 	mindmap: MindMap
@@ -44,6 +45,8 @@ export default function MindMapPageClient({ mindmap, isOwner }: Props) {
 	const titleRef = useRef<HTMLTitleElement>()
 	const [isLoading, setIsLoading] = useState<'save' | 'share' | null>(null)
 
+	const router = useRouter()
+
 	async function handleSaveData() {
 		setIsLoading('save')
 		try {
@@ -55,6 +58,7 @@ export default function MindMapPageClient({ mindmap, isOwner }: Props) {
 			if (newData) {
 				setData(newData)
 				mindmapRef.current = newData
+				router.refresh()
 			}
 		} finally {
 			setIsLoading(null)
@@ -76,6 +80,7 @@ export default function MindMapPageClient({ mindmap, isOwner }: Props) {
 			if (newData) {
 				setData(newData)
 				titleRef.current!.textContent = newData.title
+				router.refresh()
 			}
 		} finally {
 			setIsLoading(null)

@@ -1,17 +1,18 @@
-import type { Config } from 'tailwindcss'
 import withMT from '@material-tailwind/react/utils/withMT'
 import colors from 'tailwindcss/colors'
 
-const defaultColor = {
-	...colors,
-	stone: colors.warmGray,
-	sky: colors.lightBlue,
-	neutral: colors.trueGray,
-	gray: colors.coolGray,
-	slate: colors.blueGray
+const ignoreKeys = ['lightBlue', 'warmGray', 'trueGray', 'coolGray', 'blueGray']
+
+const defaultColor = {}
+
+for (const key in colors) {
+	if (ignoreKeys.includes(key)) continue
+	if (key in colors) {
+		defaultColor[key] = colors[key]
+	}
 }
 
-const config: Config = {
+const config = {
 	content: [
 		'./src/components/**/*.{js,ts,jsx,tsx,mdx}',
 		'./src/app/**/*.{js,ts,jsx,tsx,mdx}',
