@@ -1,9 +1,12 @@
+import { EdgeRecord } from '@/app-mind-map/type/edgeType'
+import { NodeRecord } from '@/app-mind-map/type/nodeType'
 import {
 	createMindmap,
 	deleteMindMapByIdInAndUserId,
 	fetchMindMapByUserId
 } from '@/services/mindmap'
 import { getSession } from '@auth0/nextjs-auth0'
+import { Edge, Node } from '@xyflow/react'
 import { NextResponse } from 'next/server'
 export type MindMap = {
 	userId: string
@@ -11,8 +14,8 @@ export type MindMap = {
 	title: string
 	description: string
 	isPublic: boolean
-	nodes: []
-	edges: []
+	nodes: Node<NodeRecord>[]
+	edges: Edge<EdgeRecord>[]
 	createdAt: string
 }
 export const POST = async function createMindMap() {
@@ -45,7 +48,7 @@ export const DELETE = async function deleteByIdIn(req: Request) {
 
 	const ids: string[] = await req.json()
 	const mindmap = await deleteMindMapByIdInAndUserId(ids, userId)
-	
+
 	if (mindmap) {
 		return NextResponse.json({ message: 'Success' })
 	}

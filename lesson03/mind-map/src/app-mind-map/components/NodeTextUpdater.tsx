@@ -1,14 +1,24 @@
-import { Handle, Position, type Node, type NodeProps } from '@xyflow/react'
-import { ChangeEvent, useCallback, useEffect, useRef, useState } from 'react'
+import {
+	Handle,
+	NodeResizer,
+	Position,
+	useReactFlow,
+	type Node,
+	type NodeProps
+} from '@xyflow/react'
+import { FocusEvent, useCallback, useEffect, useRef, useState } from 'react'
 import { NodeRecord } from '../type/nodeType'
-import WrapperNode from './WrapperNode'
+import WrapperNode from './NodeWrapper'
+import TextUpdaterNodeToolbar from './NodeTextUpdaterToolbar'
 
-type TextUpdateNode = Node<NodeRecord, 'text-update'>
+export type TextUpdateNode = Node<NodeRecord, 'text-update'>
 
 export default function TextUpdateNode({
 	data,
-	selected
+	selected,
+	id
 }: NodeProps<TextUpdateNode>) {
+	const { updateNodeData } = useReactFlow()
 	const [isEditing, setIsEditing] = useState(false)
 
 	const input = useRef<HTMLInputElement>(null)
@@ -31,16 +41,35 @@ export default function TextUpdateNode({
 		input.current?.focus()
 	}
 
-	const onChange = useCallback((evt: ChangeEvent<HTMLInputElement>) => {
-		console.log(evt.target.value)
-		console.log(data)
+	const handleOnClickEdit = useCallback(() => {
+		setIsEditing(true)
+	}, [])
+
+	const onBlur = useCallback((evt: FocusEvent<HTMLInputElement>) => {
+		updateNodeData(id, { label: evt.target.value })
+		setIsEditing(false)
 	}, [])
 	return (
 		<>
+			<TextUpdaterNodeToolbar onEdit={handleOnClickEdit} id={id} />
+			<NodeResizer
+				handleClassName={selected ? '!w-4 !h-4 !border' : '!hidden'}
+				color="#ff0071"
+				isVisible={selected}
+				minWidth={210}
+				minHeight={80}
+			/>
 			<Handle
-				type="target"
+				type={'target'}
+				id="target-top"
 				position={Position.Top}
-				className="w-8 h-4 rounded bg-blue-400"
+				className="!w-6 !h-3 !rounded !bg-blue-400"
+			/>
+			<Handle
+				type={'source'}
+				id="source-top"
+				position={Position.Bottom}
+				className="!w-6 !h-3 !rounded !bg-blue-400"
 			/>
 			<WrapperNode
 				selected={selected}
@@ -56,8 +85,7 @@ export default function TextUpdateNode({
 						ref={input}
 						id="text"
 						name="text"
-						onChange={onChange}
-						onBlur={() => setIsEditing(false)}
+						onBlur={onBlur}
 						defaultValue={String(data.label)}
 						autoFocus
 						className="bg-transparent nodrag outline-none focus:ring-1 focus:ring-white text-center"
@@ -69,12 +97,6 @@ export default function TextUpdateNode({
 					/>
 				)}
 			</WrapperNode>
-			<Handle
-				type="source"
-				position={Position.Bottom}
-				id="a"
-				className="w-8 h-4 rounded bg-blue-400"
-			/>
 		</>
 	)
 }

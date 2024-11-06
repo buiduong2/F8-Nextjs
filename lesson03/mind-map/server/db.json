@@ -49,6 +49,99 @@
       "nodes": [],
       "isPublic": true,
       "createdAt": "02/11/2024"
+    },
+    {
+      "userId": "google-oauth2|107359085844620587115",
+      "id": "lNPozvP8fPvHXrzGNyJ3q",
+      "title": "Mindmap không có tên",
+      "description": "Chưa có mô tả",
+      "edges": [
+        {
+          "id": "-Ladki1YD-goAK7uoKKlK",
+          "source": "1",
+          "sourceHandle": "source-top",
+          "target": "-Ladki1YD-goAK7uoKKlK",
+          "targetHandle": "target-top"
+        },
+        {
+          "id": "YGe0PskCAyY7S-sidJnW5",
+          "source": "-Ladki1YD-goAK7uoKKlK",
+          "sourceHandle": "source-top",
+          "target": "YGe0PskCAyY7S-sidJnW5",
+          "targetHandle": "target-top"
+        }
+      ],
+      "nodes": [
+        {
+          "id": "1",
+          "position": {
+            "x": -58.5,
+            "y": -91
+          },
+          "data": {
+            "label": "1",
+            "text": {
+              "color": "black"
+            },
+            "bgColor": "orange",
+            "border": {
+              "width": "2"
+            }
+          },
+          "type": "updater",
+          "deletable": false,
+          "measured": {
+            "width": 208,
+            "height": 80
+          },
+          "selected": false,
+          "dragging": false
+        },
+        {
+          "id": "-Ladki1YD-goAK7uoKKlK",
+          "position": {
+            "x": 292,
+            "y": -13
+          },
+          "data": {
+            "label": "New Node "
+          },
+          "origin": [
+            0.5,
+            0
+          ],
+          "type": "updater",
+          "measured": {
+            "width": 208,
+            "height": 80
+          },
+          "selected": false,
+          "dragging": false
+        },
+        {
+          "id": "YGe0PskCAyY7S-sidJnW5",
+          "position": {
+            "x": -47,
+            "y": 68.5
+          },
+          "data": {
+            "label": "New Node "
+          },
+          "origin": [
+            0.5,
+            0
+          ],
+          "type": "updater",
+          "measured": {
+            "width": 208,
+            "height": 80
+          },
+          "selected": true,
+          "dragging": false
+        }
+      ],
+      "isPublic": false,
+      "createdAt": "06/11/2024"
     }
   ]
 }

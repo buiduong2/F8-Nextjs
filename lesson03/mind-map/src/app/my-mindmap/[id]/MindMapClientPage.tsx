@@ -3,7 +3,14 @@ import AppButton from '@/components/ui/AppButton'
 import { FaSave } from 'react-icons/fa'
 import { FaShare } from 'react-icons/fa6'
 import MindMapShareModal from './MindMapShareModal'
-import { ChangeEvent, useEffect, useRef, useState } from 'react'
+import {
+	ChangeEvent,
+	createContext,
+	MutableRefObject,
+	useEffect,
+	useRef,
+	useState
+} from 'react'
 import { MindMap } from '@/app/api/mindmap/route'
 import MindMapApp from '@/app-mind-map/Main'
 
@@ -26,17 +33,25 @@ async function fetchSave(mindmap: MindMap) {
 	}
 	return null
 }
-
+export const MindMapContext = createContext<{
+	mindmapRef: MutableRefObject<MindMap | null>
+} | null>(null)
 export default function MindMapPageClient({ mindmap, isOwner }: Props) {
 	const [isOpenModal, setIsOpenModal] = useState(false)
 	const [data, setData] = useState(mindmap)
 	const [isEditing, setIsEditing] = useState<string | null>(null)
+	const mindmapRef = useRef<MindMap | null>(mindmap)
 	const titleRef = useRef<HTMLTitleElement>()
 
 	async function handleSaveData() {
-		const newData = await fetchSave(data)
+		const newData = await fetchSave({
+			...data,
+			nodes: mindmapRef.current?.nodes || [],
+			edges: mindmapRef.current?.edges || []
+		})
 		if (newData) {
 			setData(newData)
+			mindmapRef.current = newData
 		}
 	}
 
@@ -117,7 +132,9 @@ export default function MindMapPageClient({ mindmap, isOwner }: Props) {
 					)}
 				</div>
 			</div>
-			<MindMapApp />
+			<MindMapContext.Provider value={{ mindmapRef }}>
+				<MindMapApp />
+			</MindMapContext.Provider>
 			<MindMapShareModal
 				isOpenModal={isOpenModal}
 				setIsOpenModal={setIsOpenModal}

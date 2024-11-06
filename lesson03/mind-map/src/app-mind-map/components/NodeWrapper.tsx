@@ -72,13 +72,13 @@ function WrapperNode(props: Props) {
 
 	return (
 		<div
-			className={`hover:ring-2 inline-block relative ${
+			className={`hover:ring-2 inline-block relative h-full w-full ${
 				selected ? 'ring-2' : ''
 			}`}
 			ref={ringRef}
 		>
 			<div
-				className={`min-w-52 min-h-20 inline-block ${classes.join(
+				className={`min-w-52 min-h-20 block h-full w-full ${classes.join(
 					' '
 				)} flex items-center justify-center` }
 				ref={wrapperRef}

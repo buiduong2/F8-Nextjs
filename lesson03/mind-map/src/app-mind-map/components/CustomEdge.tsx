@@ -44,6 +44,7 @@ export default function CustomEdge(props: EdgeProps<CustomEdge>) {
 					label={label || ''}
 					labelX={labelX}
 					labelY={labelY}
+					id={id}
 				/>
 			</EdgeLabelRenderer>
 			)
