@@ -9,6 +9,7 @@ interface Props {
 }
 
 export default function TextUpdaterNodeToolbar({ id, onEdit }: Props) {
+	const isRootId = id === '1' || id === 'root'
 	const { deleteElements, addNodes, getEdges, getNode } = useReactFlow()
 	const handleOnClickDelete = () => {
 		const nodesToDelete = [getNode(id)!]
@@ -31,30 +32,34 @@ export default function TextUpdaterNodeToolbar({ id, onEdit }: Props) {
 	return (
 		<NodeToolbar position={Position.Top} className="-top-5">
 			<ul className="flex items-center p-1 shadow bg-white rounded-lg border">
-				<li>
-					<Tooltip content="Tạo bản sao">
-						<IconButton
-							color="white"
-							size="sm"
-							className="border"
-							onClick={handleOnClickCopy}
-						>
-							<LuCopyPlus className="size-5" />
-						</IconButton>
-					</Tooltip>
-				</li>
-				<li>
-					<Tooltip content="Xóa">
-						<IconButton
-							color="white"
-							size="sm"
-							className="border"
-							onClick={handleOnClickDelete}
-						>
-							<MdDeleteOutline className="size-5" />
-						</IconButton>
-					</Tooltip>
-				</li>
+				{!isRootId && (
+					<>
+						<li>
+							<Tooltip content="Tạo bản sao">
+								<IconButton
+									color="white"
+									size="sm"
+									className="border"
+									onClick={handleOnClickCopy}
+								>
+									<LuCopyPlus className="size-5" />
+								</IconButton>
+							</Tooltip>
+						</li>
+						<li>
+							<Tooltip content="Xóa">
+								<IconButton
+									color="white"
+									size="sm"
+									className="border"
+									onClick={handleOnClickDelete}
+								>
+									<MdDeleteOutline className="size-5" />
+								</IconButton>
+							</Tooltip>
+						</li>
+					</>
+				)}
 				<li>
 					<Tooltip content="Chỉnh sửa nội dung">
 						<IconButton

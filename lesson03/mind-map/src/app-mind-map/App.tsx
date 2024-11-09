@@ -119,7 +119,7 @@ export default function App() {
 	}, [nodes, edges])
 
 	return (
-		<div className="w-screen h-[80vh]">
+		<div className="h-[80vh]">
 			<ReactFlow
 				nodes={nodes}
 				edges={edges}
