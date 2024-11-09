@@ -55,6 +55,7 @@ export default function PageContact() {
 						<AppButton
 							className="col-span-2 font-bold"
 							color="purple"
+							fullWidth
 						>
 							Send Message
 						</AppButton>

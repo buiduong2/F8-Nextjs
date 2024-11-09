@@ -145,7 +145,7 @@ export default function AppButton<T extends React.ElementType = 'button'>(
 	return (
 		<Component
 			{...rest}
-			className={'flex items-center ' + btnClasses.join(' ')}
+			className={'flex items-center justify-center ' + btnClasses.join(' ')}
 			disabled={isLoading}
 		>
 			{isLoading && <AppLoading />}
